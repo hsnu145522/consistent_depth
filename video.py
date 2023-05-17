@@ -79,12 +79,12 @@ class Video:
             ffprobe,
             self.video_file,
         )
-        cmd = ffprobe_cmd + " | grep pkt_pts_time"
+        cmd = ffprobe_cmd + " | grep pts_time"
         print(cmd)
         res = os.popen(cmd).read()
         pts = []
         for line in res.splitlines():
-            pts.append(parse_line(line, "pkt_pts_time="))
+            pts.append(parse_line(line, "pts_time="))
         self.frame_count = len(pts)
         print("%d frames detected." % self.frame_count)
 
@@ -134,15 +134,16 @@ class Video:
         if not os.path.exists(self.video_file):
             sys.exit("ERROR: input video file '%s' not found.", self.video_file)
 
-        cmd = "%s -i %s -start_number 0 -vsync 0 %s/frame_%%06d.png" % (
+        cmd = "%s -i %s -start_number 0 -vsync vfr %s/frame_%%06d.png" % (
             ffmpeg,
             self.video_file,
             frame_dir,
         )
-        print(cmd)
+        # print(cmd)
         os.popen(cmd).read()
 
         count = len(os.listdir(frame_dir))
+        # print(self.frame_count)
         if count != self.frame_count:
             sys.exit(
                 "ERROR: %d frames extracted, but %d PTS entries."
