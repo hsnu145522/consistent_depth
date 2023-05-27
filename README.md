@@ -50,7 +50,11 @@ In SIGGRAPH 2020.
   ```
   pip3 install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
   ```
-- [FFmpeg](http://ffmpeg.org) If using ubuntu, install ffmpeg using sudo apt-get install ffmpeg instead of going to the official website.
+- [FFmpeg](http://ffmpeg.org) If using ubuntu, install ffmpeg using:
+  ```
+  sudo apt-get install ffmpeg 
+  ```
+  instead of going to the official website is recomended.
 - Install COLMAP following https://colmap.github.io/install.html. Note **[COLMAP >= 3.6](https://github.com/colmap/colmap/releases)** is required to exclude [extracting features](https://colmap.github.io/faq.html#mask-image-regions) on dynamic objects. 
   If you are using Ubuntu, you can install COLMAP by [`./scripts/install_colmap_ubuntu.sh`](scripts/install_colmap_ubuntu.sh).
  
