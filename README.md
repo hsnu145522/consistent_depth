@@ -27,13 +27,30 @@ In SIGGRAPH 2020.
   ```
   git submodule update --init --recursive
   ```
+  For Flownet2, cloning branch cxx14 from https://github.com/christian-rauch/flownet2-pytorch/tree/cxx14 and install according to readme. Then change the directory name back to flownet2.
+  ```
+  cd third_party
+  rm -rf flownet2
+  # get flownet2-pytorch source
+  git clone https://github.com/NVIDIA/flownet2-pytorch.git
+  cd flownet2-pytorch
+
+  # install custom layers
+  bash install.sh
+  cd ..
+  mv flownet2-pytorch flownet2
+  ```
 - Install python packages.
   ```
   conda create -n consistent_depth python=3.6
   conda activate consistent_depth
   ./scripts/install.sh
   ```
-- [FFmpeg](http://ffmpeg.org)
+  For torch and torchvision:
+  ```
+  pip3 install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
+  ```
+- [FFmpeg](http://ffmpeg.org) If using ubuntu, install ffmpeg using sudo apt-get install ffmpeg instead of going to the official website.
 - Install COLMAP following https://colmap.github.io/install.html. Note **[COLMAP >= 3.6](https://github.com/colmap/colmap/releases)** is required to exclude [extracting features](https://colmap.github.io/faq.html#mask-image-regions) on dynamic objects. 
   If you are using Ubuntu, you can install COLMAP by [`./scripts/install_colmap_ubuntu.sh`](scripts/install_colmap_ubuntu.sh).
  
